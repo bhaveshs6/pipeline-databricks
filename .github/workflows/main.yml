@@ -25,7 +25,7 @@ jobs:
     - name: Run ETL notebook
       uses: databricks/run-notebook@v0.0.3
       with:
-        local-notebook-path: ETL
+        local-notebook-path: ETL.ipynb
         existing-cluster-id: 1023-122417-w89ysy54
         databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
@@ -33,7 +33,8 @@ jobs:
     - name: Run ML creation notebook
       uses: databricks/run-notebook@v0.0.3
       with:
-        local-notebook-path: "ML Part"
+        local-notebook-path: "ML Part.ipynb"
         existing-cluster-id: 1023-122417-w89ysy54
         databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
+
