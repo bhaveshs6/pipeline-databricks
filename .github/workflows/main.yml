@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install databricks-cli mlflow
+
+    - name: Run ETL notebook
+      uses: databricks/run-notebook@v0.0.3
+      with:
+        local-notebook-path: /Users/bhaveshkak26122000@gmail.com/ETL
+        existing-cluster-id: 1023-122417-w89ysy54
+        databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
+        databricks-token: ${{ secrets.DB_TOKEN }}
+
+    - name: Run ML creation notebook
+      uses: databricks/run-notebook@v0.0.3
+      with:
+        local-notebook-path: "/Users/bhaveshkak26122000@gmail.com/ML Part"
+        existing-cluster-id: 1023-122417-w89ysy54
+        databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
+        databricks-token: ${{ secrets.DB_TOKEN }}
