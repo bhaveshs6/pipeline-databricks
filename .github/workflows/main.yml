@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline - ETL and ML Creation
 
 on:
   push:
@@ -38,14 +38,6 @@ jobs:
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: "ML Part.ipynb"
-        existing-cluster-id: 1107-162127-goj14smh
-        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
-        databricks-token: ${{ secrets.DB_TOKEN }}
-    
-    - name: Run ML deployment notebook
-      uses: databricks/run-notebook@v0.0.3
-      with:
-        local-notebook-path: "Deploy.ipynb"
         existing-cluster-id: 1107-162127-goj14smh
         databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
