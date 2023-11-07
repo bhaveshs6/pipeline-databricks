@@ -18,7 +18,7 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
+    - name: Upgrade pip
       run: |
         pip install --upgrade pip
 
@@ -30,22 +30,22 @@ jobs:
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: ETL.ipynb
-        existing-cluster-id: 1023-122417-w89ysy54
-        databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
+        existing-cluster-id: 1107-162127-goj14smh
+        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
 
     - name: Run ML creation notebook
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: "ML Part.ipynb"
-        existing-cluster-id: 1023-122417-w89ysy54
-        databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
+        existing-cluster-id: 1107-162127-goj14smh
+        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
     
     - name: Run ML deployment notebook
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: "Deploy.ipynb"
-        existing-cluster-id: 1023-122417-w89ysy54
-        databricks-host: https://adb-7218252456053873.13.azuredatabricks.net
+        existing-cluster-id: 1107-162127-goj14smh
+        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
         databricks-token: ${{ secrets.DB_TOKEN }}
