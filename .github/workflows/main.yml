@@ -20,11 +20,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install --upgrade pyarrow
+        pip install --upgrade pip
 
     - name: Install dependencies
       run: |
-        pip install six
+        pip install pyarrow
 
     - name: Run ETL notebook
       uses: databricks/run-notebook@v0.0.3
