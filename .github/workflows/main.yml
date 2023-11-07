@@ -24,7 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyarrow
+        pip install databricks-cli
 
     - name: Run ETL notebook
       uses: databricks/run-notebook@v0.0.3
