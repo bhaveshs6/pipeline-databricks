@@ -1,0 +1,38 @@
+name: CI/CD Pipeline - Monitoring
+
+on:
+  schedule:
+    - cron:  '0 * * * *'
+  workflow_run:
+    workflows: ["CI/CD Pipeline - ML Deployment"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Upgrade pip
+      run: |
+        pip install --upgrade pip
+
+    - name: Install dependencies
+      run: |
+        pip install databricks-cli
+
+    - name: Run ML deployment notebook
+      uses: databricks/run-notebook@v0.0.3
+      with:
+        local-notebook-path: "Monitoring and Alerting.ipynb"
+        existing-cluster-id: 1107-162127-goj14smh
+        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
+        databricks-token: ${{ secrets.DB_TOKEN }}
