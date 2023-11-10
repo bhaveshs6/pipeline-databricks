@@ -66,7 +66,7 @@ def monitor_model():
     # Load the latest registered model from MLflow
     registered_model_name = "titanic_model"
     client = mlflow.tracking.MlflowClient()
-    model_version = client.get_latest_versions(registered_model_name)[0]
+    model_version = client.get_latest_versions(registered_model_name, stages=["Production"])[0]
     model_uri = f"runs:/{model_version.run_id}/model"
 
     # Load the model from the URI
