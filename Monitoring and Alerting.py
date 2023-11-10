@@ -62,6 +62,10 @@ def send_email_alert(subject, message):
 
 # COMMAND ----------
 
+mlflow.set_experiment("/Users/bhaveshkak26122000@gmail.com/my_experiment")
+
+# COMMAND ----------
+
 def monitor_model():
     # Load the latest registered model from MLflow
     registered_model_name = "titanic_model"
