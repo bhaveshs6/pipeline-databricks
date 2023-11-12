@@ -1,8 +1,8 @@
 name: CI/CD Pipeline - Monitoring
 
 on:
-  schedule:
-    - cron:  '0 * * * *'
+  # schedule:
+  #   - cron:  '0 * * * *'
   workflow_run:
     workflows: ["CI/CD Pipeline - ML Deployment"]
     types:
