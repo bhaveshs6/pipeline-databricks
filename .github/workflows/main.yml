@@ -30,14 +30,14 @@ jobs:
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: ETL.ipynb
-        existing-cluster-id: 1107-162127-goj14smh
-        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
+        existing-cluster-id: ${{ vars.DB_CLID }}
+        databricks-host: ${{ vars.DB_HOST }}
         databricks-token: ${{ secrets.DB_TOKEN }}
 
     - name: Run ML creation notebook
       uses: databricks/run-notebook@v0.0.3
       with:
         local-notebook-path: "ML Part.ipynb"
-        existing-cluster-id: 1107-162127-goj14smh
-        databricks-host: https://adb-6724577987585661.1.azuredatabricks.net
+        existing-cluster-id: ${{ vars.DB_CLID }}
+        databricks-host: ${{ vars.DB_HOST }}
         databricks-token: ${{ secrets.DB_TOKEN }}
